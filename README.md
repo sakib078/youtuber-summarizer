@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# YouTuber Summarizer
+[![Watch the demo](https://img.youtube.com/vi/H-8cRc5FBms/0.jpg)](https://youtu.be/H-8cRc5FBms)
 
-## Getting Started
+A sleek Next.js app that instantly generates concise AI-powered summaries for any YouTube video. Simply paste a YouTube link—get an accurate summary in seconds.
 
-First, run the development server:
+---
 
-```bash
+## ✨ Features
+
+- Paste any YouTube video link to get a summary.
+- AI-powered, reliable transcript analysis for quick results.
+- Intuitive, fast, modern user interface.
+- Clean, modular, and maintainable project structure.
+
+---
+
+## 🚀 Quick Start
+
+Clone the repository
+git clone https://github.com/sakib078/youtuber-summarizer.git
+
+Install dependencies
+npm install
+
+Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000) in your browser and try it out!
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🤝 Contributing
 
-## Learn More
+Feedback and contributions are welcome!
+- Open issues or pull requests for improvements.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📄 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open source under the MIT License.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🙋‍♂️ Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[Sakib Mansuri](https://github.com/sakib078)
