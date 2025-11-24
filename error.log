@@ -1,0 +1,28 @@
+ ΓÜá Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\sakib\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\sakib\.gemini\antigravity\scratch\youtube_summarizer\package-lock.json
+
+   Γû▓ Next.js 16.0.3 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.17.1:3000
+
+ Γ£ô Starting...
+C:\Users\sakib\.gemini\antigravity\scratch\youtube_summarizer\node_modules\next\dist\server\require-hook.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+Error: Cannot find module './browsers'
+Require stack:
+- C:\Users\sakib\.gemini\antigravity\scratch\youtube_summarizer\node_modules\caniuse-lite\dist\unpacker\region.js
+- C:\Users\sakib\.gemini\antigravity\scratch\youtube_summarizer\node_modules\next\dist\compiled\browserslist\index.js
+- C:\Users\sakib\.gemini\antigravity\scratch\youtube_summarizer\node_modules\next\dist\build\utils.js
+- C:\Users\sakib\.gemini\antigravity\scratch\youtube_summarizer\node_modules\next\dist\build\swc\options.js
+- C:\Users\sakib\.gemini\antigravity\scratch\youtube_summarizer\node_modules\next\dist\build\swc\index.js
+- C:\Users\sakib\.gemini\antigravity\scratch\youtube_summarizer\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- C:\Users\sakib\.gemini\antigravity\scratch\youtube_summarizer\node_modules\next\dist\server\lib\router-server.js
+- C:\Users\sakib\.gemini\antigravity\scratch\youtube_summarizer\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[?25h
