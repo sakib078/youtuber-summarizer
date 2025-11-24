@@ -7,11 +7,19 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 
+const extractVideoId = (url: string) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+};
+
 export default function Home() {
   const [url, setUrl] = useState("");
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const videoId = extractVideoId(url);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,67 +120,88 @@ export default function Home() {
           </motion.div>
         )}
 
-        {/* Summary Result */}
-        {summary && (
+        {/* Video Embed & Summary Result */}
+        {(summary || (url && videoId)) && (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-gradient-to-br from-neutral-50 to-neutral-100 border border-neutral-300 rounded-2xl p-6 sm:p-8 shadow-2xl backdrop-blur-sm"
+            className="space-y-6"
           >
-            <div className="flex items-center gap-2 mb-6 pb-4 border-b border-neutral-300">
-              <Sparkles className="w-5 h-5 text-indigo-600" />
-              <h2 className="text-2xl font-semibold text-indigo-700">
-                Summary
-              </h2>
-            </div>
+            {/* Video Player */}
+            {videoId && (
+              <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-2xl border border-neutral-300 bg-black">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                ></iframe>
+              </div>
+            )}
 
-            <div className="markdown-content">
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                components={{
-                  h1: ({ node, ...props }) => (
-                    <h1 className="text-3xl font-bold text-neutral-900 mb-4 mt-6 first:mt-0" {...props} />
-                  ),
-                  h2: ({ node, ...props }) => (
-                    <h2 className="text-2xl font-semibold text-neutral-800 mb-3 mt-5 first:mt-0" {...props} />
-                  ),
-                  h3: ({ node, ...props }) => (
-                    <h3 className="text-xl font-semibold text-neutral-700 mb-2 mt-4 first:mt-0" {...props} />
-                  ),
-                  p: ({ node, ...props }) => (
-                    <p className="text-neutral-700 leading-relaxed mb-4" {...props} />
-                  ),
-                  ul: ({ node, ...props }) => (
-                    <ul className="list-none space-y-2 mb-4 ml-0" {...props} />
-                  ),
-                  ol: ({ node, ...props }) => (
-                    <ol className="list-decimal list-inside space-y-2 mb-4 ml-2 text-neutral-700" {...props} />
-                  ),
-                  li: ({ node, children, ...props }) => (
-                    <li className="text-neutral-700 flex items-start gap-3" {...props}>
-                      <span className="text-indigo-600 mt-1.5 flex-shrink-0">•</span>
-                      <span className="flex-1">{children}</span>
-                    </li>
-                  ),
-                  strong: ({ node, ...props }) => (
-                    <strong className="text-neutral-900 font-semibold" {...props} />
-                  ),
-                  em: ({ node, ...props }) => (
-                    <em className="text-indigo-700 italic" {...props} />
-                  ),
-                  code: ({ node, inline, ...props }: any) =>
-                    inline ? (
-                      <code className="bg-neutral-200 text-indigo-700 px-1.5 py-0.5 rounded text-sm font-mono" {...props} />
-                    ) : (
-                      <code className="block bg-neutral-200 text-neutral-800 p-4 rounded-lg text-sm font-mono overflow-x-auto mb-4" {...props} />
-                    ),
-                  blockquote: ({ node, ...props }) => (
-                    <blockquote className="border-l-4 border-indigo-500 pl-4 italic text-neutral-600 my-4" {...props} />
-                  )
-                }}
-              >{summary}
-              </ReactMarkdown>
-            </div>
+            {/* Summary */}
+            {summary && (
+              <div className="bg-gradient-to-br from-neutral-50 to-neutral-100 border border-neutral-300 rounded-2xl p-6 sm:p-8 shadow-2xl backdrop-blur-sm">
+                <div className="flex items-center gap-2 mb-6 pb-4 border-b border-neutral-300">
+                  <Sparkles className="w-5 h-5 text-indigo-600" />
+                  <h2 className="text-2xl font-semibold text-indigo-700">
+                    Summary
+                  </h2>
+                </div>
+
+                <div className="markdown-content">
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      h1: ({ node, ...props }) => (
+                        <h1 className="text-3xl font-bold text-neutral-900 mb-4 mt-6 first:mt-0" {...props} />
+                      ),
+                      h2: ({ node, ...props }) => (
+                        <h2 className="text-2xl font-semibold text-neutral-800 mb-3 mt-5 first:mt-0" {...props} />
+                      ),
+                      h3: ({ node, ...props }) => (
+                        <h3 className="text-xl font-semibold text-neutral-700 mb-2 mt-4 first:mt-0" {...props} />
+                      ),
+                      p: ({ node, ...props }) => (
+                        <p className="text-neutral-700 leading-relaxed mb-4" {...props} />
+                      ),
+                      ul: ({ node, ...props }) => (
+                        <ul className="list-none space-y-2 mb-4 ml-0" {...props} />
+                      ),
+                      ol: ({ node, ...props }) => (
+                        <ol className="list-decimal list-inside space-y-2 mb-4 ml-2 text-neutral-700" {...props} />
+                      ),
+                      li: ({ node, children, ...props }) => (
+                        <li className="text-neutral-700 flex items-start gap-3" {...props}>
+                          <span className="text-indigo-600 mt-1.5 flex-shrink-0">•</span>
+                          <span className="flex-1">{children}</span>
+                        </li>
+                      ),
+                      strong: ({ node, ...props }) => (
+                        <strong className="text-neutral-900 font-semibold" {...props} />
+                      ),
+                      em: ({ node, ...props }) => (
+                        <em className="text-indigo-700 italic" {...props} />
+                      ),
+                      code: ({ node, inline, ...props }: any) =>
+                        inline ? (
+                          <code className="bg-neutral-200 text-indigo-700 px-1.5 py-0.5 rounded text-sm font-mono" {...props} />
+                        ) : (
+                          <code className="block bg-neutral-200 text-neutral-800 p-4 rounded-lg text-sm font-mono overflow-x-auto mb-4" {...props} />
+                        ),
+                      blockquote: ({ node, ...props }) => (
+                        <blockquote className="border-l-4 border-indigo-500 pl-4 italic text-neutral-600 my-4" {...props} />
+                      )
+                    }}
+                  >{summary}
+                  </ReactMarkdown>
+                </div>
+              </div>
+            )}
           </motion.div>
         )}
 
