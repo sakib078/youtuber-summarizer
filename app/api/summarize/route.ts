@@ -2,7 +2,6 @@ import { YoutubeTranscript } from "youtube-transcript-plus";
 import { NextResponse } from "next/server";
 import Groq from "groq-sdk";
 
-
 // Initialize Groq AI
 const groq = process.env.GROQ_API_KEY
   ? new Groq({ apiKey: process.env.GROQ_API_KEY })
